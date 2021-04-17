@@ -1,0 +1,29 @@
+.block
+{
+	display: inline-flex;
+	height: 100px;
+	width: 100px;
+	background-color: magenta;
+	border: solid 4px;
+	border-radius: 100px;
+	border-color: black;
+}
+.gameBody
+{
+	margin-left: 100px;
+	margin-top: 50px;
+}
+.control
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	width: 50px;
+	border: solid black 1px;
+}
+.controller
+{
+	margin-top: 50px;
+	margin-left: 150px;
+}

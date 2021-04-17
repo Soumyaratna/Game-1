@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Game</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<h1 id="title" style="padding-left: 60px;">Turn the grid to mono-chrome</h1>
+	<div class="gameBody">
+		<div class="block" id="bk00"></div>
+		<div class="block" id="bk01"></div>
+		<div class="block" id="bk02"></div>
+		<br>
+		<div class="block" id="bk10"></div>
+		<div class="block" id="bk11"></div>
+		<div class="block" id="bk12"></div>
+		<br>
+		<div class="block" id="bk20"></div>
+		<div class="block" id="bk21"></div>
+		<div class="block" id="bk22"></div>
+	</div>
+	<div class="controller">
+		<button class="control" onclick="go_Up()">Up</button>
+		<button class="control" onclick="go_Down()">Down</button>
+		<button class="control" onclick="go_Left()">Left</button>
+		<button class="control" onclick="go_Right()">Right</button>
+	</div>
+
+<script type="text/javascript">
+	var gameGrid = [[0,0,1],[0,1,0],[1,0,0]];
+	var Xpos = 0;
+	var Ypos = 0; 
+
+	function reColor()
+	{
+		console.log(gameGrid);
+		console.log(Xpos);
+		console.log(Ypos);
+
+		var a=0;
+		var b=0;
+		for(var i=0; i<3; i++)
+			for(var j=0; j<3; j++)
+			{	
+				if(gameGrid[i][j]==0)
+				{
+					document.querySelector("#bk"+i+j).style.backgroundColor="cyan";
+					a++;
+				}
+				else
+				{
+					document.querySelector("#bk"+i+j).style.backgroundColor="magenta";
+					b++;
+				}
+				if(i==Xpos && j==Ypos)
+					document.querySelector("#bk"+i+j).style.borderColor="black";
+				else
+					document.querySelector("#bk"+i+j).style.borderColor="white";
+			}
+		if(a==0 || b==0)
+			document.querySelector("#title").innerHTML="Well done, the puzzle is solved";
+		else
+			document.querySelector("#title").innerHTML="Turn the grid to mono-chrome";
+	}
+	function startGame()
+	{
+		gameGrid[Xpos][Ypos]=(gameGrid[Xpos][Ypos]+1)%2;
+		reColor();
+	}
+	startGame();
+	function go_Left()
+	{
+		if(Ypos!=0)
+		{
+			Ypos--;
+			gameGrid[Xpos][Ypos]=(gameGrid[Xpos][Ypos]+1)%2;
+			reColor();
+		}
+	}
+	function go_Right()
+	{
+		if(Ypos!=2)
+		{
+			Ypos++;
+			gameGrid[Xpos][Ypos]=(gameGrid[Xpos][Ypos]+1)%2;
+			reColor();
+		}
+	}
+	function go_Up()
+	{
+		if(Xpos!=0)
+		{
+			Xpos--;
+			gameGrid[Xpos][Ypos]=(gameGrid[Xpos][Ypos]+1)%2;
+			reColor();
+		}
+	}
+	function go_Down()
+	{
+		if(Xpos!=2)
+		{
+			Xpos++;
+			gameGrid[Xpos][Ypos]=(gameGrid[Xpos][Ypos]+1)%2;
+			reColor();
+		}
+	}
+
+</script>
+</body>
+
+</html>
